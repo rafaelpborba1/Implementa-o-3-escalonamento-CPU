@@ -7,3 +7,29 @@ Algoritmo: RM | Arquivo: tarefas.txt
 Erro: Algoritmo 'INVALIDO' invalido. Escolha 'RM' ou 'EDF'.
 
 Script done on 2026-09-08 18:25:26-03:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2026-09-09 09:45:52-03:00 [COMMAND="whoami; pwd; date; make; ./scheduler RM tarefas.txt" TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="139" LINES="11"]
+rafaelborba
+/mnt/c/Users/rafap/OneDrive/Área de Trabalho/rpb/Implementa-o-3-escalonamento-CPU
+Wed Sep  9 09:45:52 -03 2026
+gcc -Wall -Wextra -g main.c -o scheduler
+Erro ao abrir o arquivo de tarefas: No such file or directory
+
+Script done on 2026-09-09 09:45:52-03:00 [COMMAND_EXIT_CODE="1"]
+Script started on 2026-09-09 09:46:43-03:00 [COMMAND="whoami; pwd; date; make; ./scheduler RM tarefas.txt" TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="139" LINES="11"]
+rafaelborba
+/mnt/c/Users/rafap/OneDrive/Área de Trabalho/rpb/Implementa-o-3-escalonamento-CPU
+Wed Sep  9 09:46:43 -03 2026
+make: Nothing to be done for 'all'.
+Algoritmo: RM | Tarefas: 0 | Utilizacao (U): 0.00%
+Sistema potencialmente escalonavel.
+
+Script done on 2026-09-09 09:46:43-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 09:47:22-03:00 [COMMAND="whoami; pwd; date; make; ./scheduler RM tarefas.txt" TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="139" LINES="11"]
+rafaelborba
+/mnt/c/Users/rafap/OneDrive/Área de Trabalho/rpb/Implementa-o-3-escalonamento-CPU
+Wed Sep  9 09:47:22 -03 2026
+make: Nothing to be done for 'all'.
+Algoritmo: RM | Tarefas: 3 | Utilizacao (U): 95.83%
+Sistema potencialmente escalonavel.
+
+Script done on 2026-09-09 09:47:22-03:00 [COMMAND_EXIT_CODE="0"]
