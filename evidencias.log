@@ -33,3 +33,95 @@ Algoritmo: RM | Tarefas: 3 | Utilizacao (U): 95.83%
 Sistema potencialmente escalonavel.
 
 Script done on 2026-09-09 09:47:22-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 09:55:34-03:00 [COMMAND="whoami; pwd; date; make; ./scheduler RM tarefas.txt" TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="139" LINES="11"]
+rafaelborba
+/mnt/c/Users/rafap/OneDrive/Área de Trabalho/rpb/Implementa-o-3-escalonamento-CPU
+Wed Sep  9 09:55:34 -03 2026
+gcc -Wall -Wextra -g main.c -o scheduler
+[01m[Kmain.c:[m[K In function ‘[01m[Kselecionar_tarefa[m[K’:
+[01m[Kmain.c:26:73:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kt[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+   26 | int selecionar_tarefa(Task tasks[], int num_tasks, char *algoritmo, [01;35m[Kint t[m[K) {
+      |                                                                     [01;35m[K~~~~^[m[K
+Algoritmo: RM | Tarefas: 0 | Utilizacao (U): 0.00%
+
+[00 - 01] CPU Ociosa
+[01 - 02] CPU Ociosa
+[02 - 03] CPU Ociosa
+[03 - 04] CPU Ociosa
+[04 - 05] CPU Ociosa
+[05 - 06] CPU Ociosa
+[06 - 07] CPU Ociosa
+[07 - 08] CPU Ociosa
+[08 - 09] CPU Ociosa
+[09 - 10] CPU Ociosa
+[10 - 11] CPU Ociosa
+[11 - 12] CPU Ociosa
+[12 - 13] CPU Ociosa
+[13 - 14] CPU Ociosa
+[14 - 15] CPU Ociosa
+[15 - 16] CPU Ociosa
+[16 - 17] CPU Ociosa
+[17 - 18] CPU Ociosa
+[18 - 19] CPU Ociosa
+[19 - 20] CPU Ociosa
+
+Script done on 2026-09-09 09:55:34-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 10:00:11-03:00 [COMMAND="whoami; pwd; date; make; ./scheduler RM tarefas.txt" TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="139" LINES="11"]
+rafaelborba
+/mnt/c/Users/rafap/OneDrive/Área de Trabalho/rpb/Implementa-o-3-escalonamento-CPU
+Wed Sep  9 10:00:11 -03 2026
+gcc -Wall -Wextra -g main.c -o scheduler
+Algoritmo: RM | Tarefas: 3 | Utilizacao (U): 95.83%
+
+[00 - 01] Executando: T1 (Restante: 0)
+[01 - 02] Executando: T2 (Restante: 1)
+[02 - 03] Executando: T2 (Restante: 0)
+[03 - 04] Executando: T3 (Restante: 2)
+[04 - 05] Executando: T1 (Restante: 0)
+[05 - 06] Executando: T3 (Restante: 1)
+[06 - 07] Executando: T2 (Restante: 1)
+[07 - 08] Executando: T2 (Restante: 0)
+  [AVISO] Perda de deadline na tarefa T3 no tick 8!
+[08 - 09] Executando: T1 (Restante: 0)
+[09 - 10] Executando: T3 (Restante: 2)
+[10 - 11] Executando: T3 (Restante: 1)
+[11 - 12] Executando: T3 (Restante: 0)
+[12 - 13] Executando: T1 (Restante: 0)
+[13 - 14] Executando: T2 (Restante: 1)
+[14 - 15] Executando: T2 (Restante: 0)
+[15 - 16] CPU Ociosa
+[16 - 17] Executando: T1 (Restante: 0)
+[17 - 18] Executando: T3 (Restante: 2)
+[18 - 19] Executando: T2 (Restante: 1)
+[19 - 20] Executando: T2 (Restante: 0)
+
+Script done on 2026-09-09 10:00:12-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 10:01:18-03:00 [COMMAND="whoami; pwd; date; make; ./scheduler EDF tarefas.txt" TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="139" LINES="11"]
+rafaelborba
+/mnt/c/Users/rafap/OneDrive/Área de Trabalho/rpb/Implementa-o-3-escalonamento-CPU
+Wed Sep  9 10:01:18 -03 2026
+gcc -Wall -Wextra -g main.c -o scheduler
+Algoritmo: EDF | Tarefas: 3 | Utilizacao (U): 95.83%
+
+[00 - 01] Executando: T1 (Restante: 0)
+[01 - 02] Executando: T2 (Restante: 1)
+[02 - 03] Executando: T2 (Restante: 0)
+[03 - 04] Executando: T3 (Restante: 2)
+[04 - 05] Executando: T1 (Restante: 0)
+[05 - 06] Executando: T3 (Restante: 1)
+[06 - 07] Executando: T3 (Restante: 0)
+[07 - 08] Executando: T2 (Restante: 1)
+[08 - 09] Executando: T1 (Restante: 0)
+[09 - 10] Executando: T2 (Restante: 0)
+[10 - 11] Executando: T3 (Restante: 2)
+[11 - 12] Executando: T3 (Restante: 1)
+[12 - 13] Executando: T1 (Restante: 0)
+[13 - 14] Executando: T3 (Restante: 0)
+[14 - 15] Executando: T2 (Restante: 1)
+[15 - 16] Executando: T2 (Restante: 0)
+[16 - 17] Executando: T1 (Restante: 0)
+[17 - 18] Executando: T3 (Restante: 2)
+[18 - 19] Executando: T2 (Restante: 1)
+[19 - 20] Executando: T2 (Restante: 0)
+
+Script done on 2026-09-09 10:01:18-03:00 [COMMAND_EXIT_CODE="0"]

@@ -3,6 +3,7 @@
 #include <string.h>
 
 #define MAX_TASKS 32
+#define SIM_TIME 20
 
 typedef struct {
     char name[32];
@@ -20,6 +21,27 @@ double calcular_utilizacao(Task tasks[], int num_tasks) {
         u += (double)tasks[i].c / tasks[i].p;
     }
     return u;
+}
+
+int selecionar_tarefa(Task tasks[], int num_tasks, const char *algoritmo) {
+    int escolhida = -1;
+
+    for (int i = 0; i < num_tasks; i++) {
+        if (tasks[i].remaining_c > 0) {
+            if (escolhida == -1) {
+                escolhida = i;
+            } else if (strcmp(algoritmo, "RM") == 0) {
+                if (tasks[i].p < tasks[escolhida].p) {
+                    escolhida = i;
+                }
+            } else if (strcmp(algoritmo, "EDF") == 0) {
+                if (tasks[i].absolute_deadline < tasks[escolhida].absolute_deadline) {
+                    escolhida = i;
+                }
+            }
+        }
+    }
+    return escolhida;
 }
 
 int main(int argc, char *argv[]) {
@@ -57,16 +79,32 @@ int main(int argc, char *argv[]) {
         tasks[num_tasks].absolute_deadline = 0;
         num_tasks++;
     }
-
     fclose(fp);
 
     double u = calcular_utilizacao(tasks, num_tasks);
-    printf("Algoritmo: %s | Tarefas: %d | Utilizacao (U): %.2f%%\n", algoritmo, num_tasks, u * 100.0);
+    printf("Algoritmo: %s | Tarefas: %d | Utilizacao (U): %.2f%%\n\n", algoritmo, num_tasks, u * 100.0);
 
-    if (u > 1.0) {
-        printf("Aviso: Sistema NAO escalonavel (U > 100%%).\n");
-    } else {
-        printf("Sistema potencialmente escalonavel.\n");
+    for (int t = 0; t < SIM_TIME; t++) {
+        for (int i = 0; i < num_tasks; i++) {
+            if (t == tasks[i].next_release) {
+                tasks[i].remaining_c = tasks[i].c;
+                tasks[i].absolute_deadline = t + tasks[i].d;
+                tasks[i].next_release = t + tasks[i].p;
+            }
+        }
+        int idx = selecionar_tarefa(tasks, num_tasks, algoritmo);
+
+        if (idx != -1) {
+            printf("[%02d - %02d] Executando: %s (Restante: %d)\n", t, t + 1, tasks[idx].name, tasks[idx].remaining_c - 1);
+            tasks[idx].remaining_c--;
+        } else {
+            printf("[%02d - %02d] CPU Ociosa\n", t, t + 1);
+        }
+        for (int i = 0; i < num_tasks; i++) {
+            if (tasks[i].remaining_c > 0 && (t + 1) >= tasks[i].absolute_deadline) {
+                printf("  [AVISO] Perda de deadline na tarefa %s no tick %d!\n", tasks[i].name, t + 1);
+            }
+        }
     }
 
     return EXIT_SUCCESS;
