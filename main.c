@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct {
+    char name[32];           
+    int c;                   
+    int p;                   
+    int d;                   
+    
+    int remaining_c;        
+    int next_release;       
+    int absolute_deadline;   
+} Task;
+
 int main(int argc, char *argv[]) {
     if (argc < 3) {
         fprintf(stderr, "Uso incorreto. Sintaxe: %s <RM|EDF> <arquivo_entrada>\n", argv[0]);
@@ -16,7 +27,9 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    printf("Algoritmo: %s | Arquivo: %s\n", algoritmo, arquivo_entrada);
+    printf("Algoritmo selecionado: %s\n", algoritmo);
+    printf("Arquivo de entrada: %s\n", arquivo_entrada);
+    printf("Estrutura Task inicializada com sucesso (tamanho: %lu bytes).\n", sizeof(Task));
 
     return EXIT_SUCCESS;
 }
