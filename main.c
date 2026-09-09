@@ -84,6 +84,11 @@ int main(int argc, char *argv[]) {
     double u = calcular_utilizacao(tasks, num_tasks);
     printf("Algoritmo: %s | Tarefas: %d | Utilizacao (U): %.2f%%\n\n", algoritmo, num_tasks, u * 100.0);
 
+    int idle_ticks = 0;
+    int context_switches = 0;
+    int deadline_misses = 0;
+    int prev_task_idx = -1;
+
     for (int t = 0; t < SIM_TIME; t++) {
         for (int i = 0; i < num_tasks; i++) {
             if (t == tasks[i].next_release) {
@@ -94,18 +99,34 @@ int main(int argc, char *argv[]) {
         }
         int idx = selecionar_tarefa(tasks, num_tasks, algoritmo);
 
+        if (idx != prev_task_idx && prev_task_idx != -1 && idx != -1) {
+            context_switches++;
+        }
+
         if (idx != -1) {
             printf("[%02d - %02d] Executando: %s (Restante: %d)\n", t, t + 1, tasks[idx].name, tasks[idx].remaining_c - 1);
             tasks[idx].remaining_c--;
         } else {
             printf("[%02d - %02d] CPU Ociosa\n", t, t + 1);
+            idle_ticks++;
         }
+
+        prev_task_idx = idx;
+
         for (int i = 0; i < num_tasks; i++) {
             if (tasks[i].remaining_c > 0 && (t + 1) >= tasks[i].absolute_deadline) {
                 printf("  [AVISO] Perda de deadline na tarefa %s no tick %d!\n", tasks[i].name, t + 1);
+                deadline_misses++;
             }
         }
     }
+
+    printf("\n RESUMO DA SIMULACAO \n");
+    printf("Tempo total simulado  : %d ticks\n", SIM_TIME);
+    printf("Tempo de CPU Ociosa   : %d ticks (%.1f%%)\n", idle_ticks, ((double)idle_ticks / SIM_TIME) * 100.0);
+    printf("Trocas de Contexto    : %d\n", context_switches);
+    printf("Perdas de Deadline    : %d\n", deadline_misses);
+    printf("\n");
 
     return EXIT_SUCCESS;
 }
